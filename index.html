@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator SPT Tahunan Dokter</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 16px; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+    label { display: block; margin: 8px 0 4px; }
+    input[type="number"] { width: 240px; }
+    .row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .result { white-space: pre-line; background: #fafafa; padding: 12px; border: 1px solid #eee; border-radius: 8px; }
+    .muted { color: #666; font-size: 12px; }
+    .error { color: #b00020; background: #fff2f2; border: 1px solid #f0c0c0; padding: 10px; border-radius: 8px; margin-top: 8px; white-space: pre-line; }
+  </style>
+  <script defer src="app.js"></script>
+  </head>
+<body>
+  <h1>Kalkulator SPT Tahunan Dokter</h1>
+
+  <div class="card">
+    <h3>Data Pegawai & Bukti Potong</h3>
+    <div class="row">
+      <div>
+        <label>Neto pegawai tahunan (Rp)</label>
+        <input id="netoPegawai" type="number" value="0" />
+      </div>
+      <div>
+        <label>PPh 21 pegawai (kredit A1/A2) (Rp)</label>
+        <input id="pphPegawai" type="number" value="0" />
+      </div>
+    </div>
+    <div>
+      <h4>Bukti Potong Non‑pegawai</h4>
+      <div id="bpContainer"></div>
+      <button id="btnAddBP" type="button">Tambah Baris Bukti Potong</button>
+      <button id="btnAdd5BP" type="button">Tambah 5 Baris</button>
+      <button id="btnResetBP" type="button">Reset Daftar</button>
+      <p class="muted">Isi baris per bukti potong: Bruto dan PPh 21 yang dipotong.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Parameter Lain</h3>
+    <div class="row">
+      <div>
+        <label>Bruto praktik tahunan (otomatis dari bukti potong)</label>
+        <input id="brutoPraktik" type="number" value="0" readonly />
+      </div>
+      <div>
+        <label>Norma NPPN</label>
+        <select id="norma">
+          <option value="0.5" selected>50%</option>
+          <option value="0.45">45%</option>
+          <option value="0.4">40%</option>
+          <option value="0.3">30%</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label>Status</label>
+        <select id="status">
+          <option value="TK/0">TK/0</option>
+          <option value="TK/1">TK/1</option>
+          <option value="TK/2">TK/2</option>
+          <option value="TK/3">TK/3</option>
+          <option value="K/0">K/0</option>
+          <option value="K/1">K/1</option>
+          <option value="K/2">K/2</option>
+          <option value="K/3">K/3</option>
+        </select>
+      </div>
+    </div>
+    <button id="btnHitung">Hitung Pajak Terutang</button>
+  </div>
+
+  <div class="card">
+    <h3>Hasil</h3>
+    <div id="hasil" class="result">Belum ada perhitungan</div>
+    <button id="btnSalin" type="button">Salin Hasil</button>
+    <button id="btnCSV" type="button">Unduh CSV</button>
+    <div id="errors" class="error" style="display:none;"></div>
+  </div>
+</body>
+</html>
